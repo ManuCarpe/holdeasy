@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Brawler:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  html { background: rgb(238,235,226); scroll-behavior: smooth; }
+  body { margin: 0; font-family: "Brawler", Georgia, serif; font-weight: 400; -webkit-font-smoothing: antialiased; }
+  input, button, textarea, select { font-family: inherit; font-weight: 400; }
+  * { box-sizing: border-box; }
+  a { color: rgb(12,12,12); text-decoration: none; }
+  a:hover { color: rgb(139,135,119); }
+  input { font: inherit; }
+  input::placeholder { color: rgba(255,254,251,0.72); }
+  #mob input::placeholder { color: rgba(255,254,251,0.72); }
+  #desk section[data-in] { opacity: 1 !important; }
+  #desk [data-header][data-in] { opacity: 1 !important; transform: translateY(0px) !important; }
+  @media (max-width: 899px) { #desk { display: none !important; } }
+  @media (min-width: 900px) { #mob { display: none !important; } }
+</style>
+</helmet>
+
+<div id="desk" style="position: relative; background: rgb(238,235,226);">
+  <div ref="{{ wrapRef }}" style="position: relative; height: 420vh;">
+    <div style="position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; background: rgb(238,235,226);">
+
+      <div style="position: absolute; left: 0; top: 0; width: 100vw; height: 100vh; display: flex; transform: translateX(calc(60vw - var(--t1, 0) * 60vw)); will-change: transform;">
+
+        <section data-screen-label="Intro" style="position: relative; flex: none; width: calc(40vw + var(--t1, 0) * 60vw); height: 100vh; background: rgb(238,235,226); display: flex; flex-direction: column; align-items: center; transform: translateY(calc(var(--vy, 0) * -1vh)); transition: none; padding: 8vh 30px 110px 30px; overflow: hidden;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: clamp(48px, 9vh, 100px);">
+            <h2 style="margin: 0; width: min(359px, 100%); font-weight: 400; font-size: clamp(22px, 2.3vw, 32px); line-height: 1.1; letter-spacing: 0em; text-align: center; color: rgb(12,12,12); text-wrap: pretty;">Holdeasy is a small app for the minutes when stress takes over.</h2>
+            <p style="margin: 0; max-width: min(470px, 100%); font-weight: 400; font-size: clamp(15px, 1.25vw, 18px); line-height: 1.3; letter-spacing: 0em; text-align: center; color: rgb(139,135,119); text-wrap: pretty;">Sixty seconds that use your senses to bring you back into the room, one prompt at a time. Nothing to type.</p>
+          </div>
+          <div style="margin-top: clamp(32px, 6vh, 72px); width: auto; max-width: 100%; height: min(741px, var(--phone-max-h, 741px)); aspect-ratio: 396 / 741; flex: none; background: url(assets/phone.png) 0% 8.372% / 104.851% 103.832% no-repeat; "></div>
+        </section>
+      </div>
+
+      <section data-screen-label="01 Hero" style="position: absolute; left: 0; top: 0; width: 60vw; height: 100vh; overflow: hidden; transform: translateX(calc(var(--t1, 0) * -60vw)); will-change: transform;">
+        <div style="position: absolute; inset: 0; background: url(assets/hero.png) center / cover no-repeat; transform: scale(calc(1 + var(--t1, 0) * 0.12)); transform-origin: 30% 50%; will-change: transform;"></div>
+        <div style="position: relative; height: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 62px 30px;">
+          <img src="assets/logo-cream.svg" alt="holdeasy.me" style="width: 154px; height: 33px; flex: none;" />
+          <h1 style="margin: 0; align-self: stretch; font-weight: 400; font-size: clamp(46px, 5.85vw, 92px); line-height: 0.9; letter-spacing: -0.0476em; text-align: center; color: rgb(238,235,226); text-wrap: balance;">You need the <br /> next minute to <br /> be simple.</h1>
+          <div style="display: flex; flex-direction: column; gap: 8px; align-items: center; width: min(514px, 92%); flex: none;">
+            <span style="align-self: stretch; font-weight: 400; font-size: 12px; line-height: 1.3; letter-spacing: -0.042em; color: rgb(255,254,251);">We will reach out to you when holdeasy is ready.</span>
+            <form onSubmit="{{ submit }}" style="display: flex; flex-direction: row; gap: 7px; align-items: center; align-self: stretch;">
+              <input type="email" value="{{ email }}" onChange="{{ setEmail }}" placeholder="Your email address" style="flex: 1 1 auto; min-width: 0; height: 50px; padding: 8px 16px; border: 1px solid rgba(232,229,221,0.45); border-radius: 28px; background: rgba(255,254,251,0.29); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 8px 15px 0 rgba(0,0,0,0.02); color: rgb(255,254,251); font-size: 18px; line-height: 1; letter-spacing: -0.028em; outline: none; transition: border-color 260ms ease;" style-focus="border-color: rgb(232,229,221);" />
+              <button type="submit" style="flex: none; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 10px; width: {{ ctaWidth }}; height: 48px; padding: {{ ctaPadding }}; border: 0; border-radius: 100px; background: rgb(255,254,251); color: rgb(12,12,12); font-family: inherit; font-size: 16px; line-height: 1; letter-spacing: -0.031em; white-space: nowrap; cursor: pointer; transition: background 320ms cubic-bezier(.22,1,.36,1), color 320ms cubic-bezier(.22,1,.36,1);" style-hover="background: rgb(12,12,12); color: rgb(255,254,251);">
+                <span>{{ ctaLabel }}</span>
+                <sc-if value="{{ ctaShowArrow }}" hint-placeholder-val="{{ true }}">
+                  <svg width="8.068" height="14" viewBox="0 0 8.068 14" fill="none" style="flex: none;"><path d="M 8.04 6.829 C 7.806 7.241 7.567 7.265 7.117 7.264 C 6.278 6.832 5.238 6.099 4.568 5.399 C 3.178 3.95 1.571 2.724 0.068 1.399 C -0.078 1.271 0.054 0.602 0.072 0.416 C 0.119 0.296 0.192 0.17 0.299 0.092 C 0.422 0.003 0.573 -0.013 0.72 0.009 C 2.232 0.234 5.229 3.351 6.394 4.506 C 6.886 4.994 7.439 5.444 7.857 5.997 C 8.082 6.294 8.096 6.473 8.04 6.829 Z" fill="currentColor" fill-rule="nonzero"></path><path d="M 0.84 13.972 C 0.424 13.741 0.298 13.345 0.299 12.899 C 0.735 12.069 1.862 11.064 2.568 10.399 C 4.031 9.023 5.068 7.399 6.691 6.243 C 6.82 6.099 7.126 6.062 7.314 6.08 C 7.436 6.127 7.562 6.199 7.641 6.306 C 7.732 6.427 7.88 6.624 7.857 6.771 C 7.63 8.268 4.351 11.188 3.185 12.342 C 2.692 12.829 2.238 13.378 1.68 13.792 C 1.38 14.015 1.199 14.028 0.84 13.972 Z" fill="currentColor" fill-rule="nonzero"></path></svg>
+                </sc-if>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+      <div ref="{{ stackRef }}" style="position: relative; height: 400vh; margin-top: -100vh;">
+        <div style="position: sticky; top: 0; height: 100vh; overflow: hidden; background: rgb(238,235,226);">
+        <div data-header="" style="position: absolute; left: 0; right: 0; top: 0; z-index: 5; display: flex; flex-direction: row; align-items: center; justify-content: space-between; padding: 20px 30px; pointer-events: none; opacity: 0; transform: translateY(-34px); transition: opacity 700ms cubic-bezier(.22,1,.36,1), transform 900ms cubic-bezier(.22,1,.36,1) 90ms;">
+          <img src="assets/logo-dark.svg" alt="holdeasy.me" style="width: 154px; height: 33px; flex: none;" />
+          <button type="button" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 10px; width: 145px; height: 48px; padding: 12px 12px 12px 20px; border: 0; border-radius: 100px; background: rgb(255,254,251); color: rgb(12,12,12); font-family: inherit; font-size: 16px; line-height: 1; letter-spacing: -0.031em; white-space: nowrap; cursor: pointer; pointer-events: auto; transition: background 320ms cubic-bezier(.22,1,.36,1), color 320ms cubic-bezier(.22,1,.36,1);" style-hover="background: rgb(12,12,12); color: rgb(255,254,251);">
+                <span>Join waitlist</span>
+                <svg width="8.068" height="14" viewBox="0 0 8.068 14" fill="none" style="flex: none;"><path d="M 8.04 6.829 C 7.806 7.241 7.567 7.265 7.117 7.264 C 6.278 6.832 5.238 6.099 4.568 5.399 C 3.178 3.95 1.571 2.724 0.068 1.399 C -0.078 1.271 0.054 0.602 0.072 0.416 C 0.119 0.296 0.192 0.17 0.299 0.092 C 0.422 0.003 0.573 -0.013 0.72 0.009 C 2.232 0.234 5.229 3.351 6.394 4.506 C 6.886 4.994 7.439 5.444 7.857 5.997 C 8.082 6.294 8.096 6.473 8.04 6.829 Z" fill="currentColor" fill-rule="nonzero"></path><path d="M 0.84 13.972 C 0.424 13.741 0.298 13.345 0.299 12.899 C 0.735 12.069 1.862 11.064 2.568 10.399 C 4.031 9.023 5.068 7.399 6.691 6.243 C 6.82 6.099 7.126 6.062 7.314 6.08 C 7.436 6.127 7.562 6.199 7.641 6.306 C 7.732 6.427 7.88 6.624 7.857 6.771 C 7.63 8.268 4.351 11.188 3.185 12.342 C 2.692 12.829 2.238 13.378 1.68 13.792 C 1.38 14.015 1.199 14.028 0.84 13.972 Z" fill="currentColor" fill-rule="nonzero"></path></svg>
+              </button>
+        </div>
+          <section data-screen-label="02 Senses" data-reveal="" style="position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; opacity: 0; transition: opacity 850ms cubic-bezier(.22,1,.36,1);">
+            <div style="position: relative; background: rgb(238,235,226); display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; padding: 20px 30px 62px 30px; transition: none;">
+              <div style="width: 154px; height: 33px; flex: none;"></div>
+              <h2 style="margin: 0; width: min(472px, 33vw); font-weight: 400; font-size: clamp(38px, 4.25vw, 62px); line-height: 1.1; letter-spacing: -0.02em; color: rgb(12,12,12);">When stress starts, you shouldn't have to decide anything.</h2>
+              <p style="margin: 0; width: min(338px, 23.5vw); font-weight: 400; font-size: clamp(15px, 1.25vw, 18px); line-height: 1.3; letter-spacing: 0em; color: rgb(139,135,119);">It arrives before you can name it, and the last thing you need is one more thing to work out.</p>
+              <div style="display: flex; flex-direction: row; align-items: center; gap: clamp(22px, 3.06vw, 44px); height: 58.498px; flex: none;">
+                <img src="assets/sense-1.svg" alt="" style="width: 54.888px; height: 36.439px;" />
+                <img src="assets/sense-2.svg" alt="" style="width: 37.277px; height: 58.498px;" />
+                <img src="assets/sense-3.svg" alt="" style="width: 31.345px; height: 56.544px;" />
+                <img src="assets/sense-4.svg" alt="" style="width: 55.970px; height: 45.793px;" />
+                <img src="assets/sense-5.svg" alt="" style="width: 44.354px; height: 50.493px;" />
+              </div>
+            </div>
+            <div style="position: relative; background: url(assets/s2-bg.png) 100% 50% / 179.544% 100% no-repeat; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; padding: 20px 30px 30px 30px;">
+              <div style="height: 48px; flex: none;"></div>
+              <div style="display: flex; flex-direction: column; gap: clamp(28px, 5.7vh, 57px); width: min(340px, 23.6vw); flex: none;">
+                <p style="margin: 0; font-weight: 400; font-size: clamp(20px, 2.19vw, 32px); line-height: 1.1; letter-spacing: -0.016em; color: rgb(255,254,251); text-wrap: pretty;">holdeasy keeps the order. Your only job is to notice.</p>
+                <p style="margin: 0; font-weight: 400; font-size: clamp(20px, 2.19vw, 32px); line-height: 1.1; letter-spacing: -0.016em; color: rgb(255,254,251); text-wrap: pretty;">Your senses are the way back. They're the part of you still reporting on the room you're actually in.</p>
+              </div>
+            </div>
+            <div style="position: absolute; left: 37.293%; top: 43.154%; height: 56.846%; aspect-ratio: 365.95 / 560.50; background: url(assets/s2-overlay.png) 43.569% 2.987% / 117.751% 135.160% no-repeat; pointer-events: none;"></div>
+          </section>
+
+          <section data-screen-label="03 What it won't do" data-reveal="" style="position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; opacity: 0; transition: opacity 850ms cubic-bezier(.22,1,.36,1);">
+            <div style="position: relative; background: rgb(238,235,226); display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; padding: 20px 30px 62px 30px;">
+              <div style="width: 154px; height: 33px; flex: none;"></div>
+              <div style="display: flex; flex-direction: column; gap: 32px; justify-content: center; align-items: center; flex: 1 1 auto; align-self: stretch;">
+                <h2 style="margin: 0; max-width: 539px; font-weight: 400; font-size: clamp(38px, 4.25vw, 62px); line-height: 1.1; letter-spacing: -0.02em; text-align: center; color: rgb(12,12,12);">What it won't do</h2>
+                <p style="margin: 0; max-width: 318px; font-weight: 400; font-size: clamp(15px, 1.25vw, 18px); line-height: 1.3; letter-spacing: 0em; text-align: center; color: rgb(139,135,119); text-wrap: pretty;">Most of the work went into leaving things out. Something you reach for on a bad night can't ask anything of you.</p>
+              </div>
+              <div style="width: 154px; height: 33px;"></div>
+            </div>
+            <div style="position: relative; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(assets/s3-bg.png) center / cover no-repeat; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 20px 30px 30px 30px; overflow: hidden;">
+              <div style="height: 48px; flex: none;"></div>
+              <div style="position: relative; width: 100%; max-width: 420px; display: flex; flex-direction: row; align-items: flex-start;">
+                <span style="margin-top: 62px; height: 46px; display: flex; align-items: baseline; font-weight: 400; font-size: clamp(28px, 2.9vw, 42px); line-height: 1.1; letter-spacing: -0.012em; color: rgb(255,254,251); white-space: nowrap; flex: none;">No</span>
+                <div style="display: flex; flex-direction: column; gap: 16px; transform: translateY({{ noShift }}px); transition: transform 700ms cubic-bezier(.22,1,.36,1);">
+                  <sc-for list="{{ noRows }}" as="row" hint-placeholder-count="4">
+                    <span style="margin-left: {{ row.indent }}px; height: 46px; display: flex; align-items: baseline; font-weight: 400; font-size: clamp(28px, 2.9vw, 42px); line-height: 1.1; letter-spacing: -0.012em; color: rgb(255,254,251); white-space: nowrap; opacity: {{ row.opacity }}; transition: opacity 500ms ease;">{{ row.label }}</span>
+                  </sc-for>
+                </div>
+              </div>
+              <p style="margin: 0; font-weight: 400; font-size: clamp(22px, 2.3vw, 32px); line-height: 1.1; letter-spacing: -0.016em; text-align: center; color: rgb(255,254,251);">{{ noCaption }}</p>
+            </div>
+          </section>
+
+          <section data-screen-label="04 Questions & why" data-reveal="" style="position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; opacity: 0; transition: opacity 850ms cubic-bezier(.22,1,.36,1);">
+            <div style="position: relative; background: rgb(238,235,226); display: flex; flex-direction: column; padding: 20px clamp(30px, 5vw, 72px) 62px clamp(30px, 5vw, 72px);">
+              <div style="flex: 1 1 0; display: flex; align-items: center; justify-content: center;">
+                <h2 style="margin: 0; max-width: 294px; font-weight: 400; font-size: clamp(38px, 4.3vw, 62px); line-height: 1.1; letter-spacing: -0.0645em; text-align: center; color: rgb(12,12,12);">Questions we get</h2>
+              </div>
+              <div style="flex: 1 1 0; display: flex; flex-direction: column; gap: 32px; justify-content: flex-end;">
+                <sc-for list="{{ faq }}" as="q" hint-placeholder-count="3">
+                  <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; align-self: stretch;">
+                    <div onClick="{{ q.toggle }}" style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; align-self: stretch; gap: 24px; cursor: pointer;">
+                      <span style="font-weight: 400; font-size: 20px; line-height: 1.1; letter-spacing: -0.025em; color: rgb(12,12,12);">{{ q.question }}</span>
+                      <span style="flex: none; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;">
+                        <sc-if value="{{ q.open }}" hint-placeholder-val="{{ true }}">
+                          <svg width="20" height="3.554" viewBox="0 0 20 3.554" fill="rgb(12,12,12)"><path d="M 19.906 1.034 C 20.164 1.926 19.872 2.285 19.259 2.893 C 17.52 3.431 14.705 3.092 12.82 3.028 C 8.913 2.895 5.123 3.358 1.236 3.554 C 0.86 3.573 0.387 3.2 0.152 2.916 C 0.049 2.684 -0.027 2.41 0.009 2.155 C 0.051 1.864 0.234 1.638 0.465 1.468 C 2.832 -0.27 11.244 0.004 14.434 0.032 C 15.783 0.044 17.161 -0.081 18.499 0.122 C 19.219 0.231 19.487 0.462 19.906 1.034 Z" fill-rule="nonzero"></path></svg>
+                        </sc-if>
+                        <sc-if value="{{ q.closed }}" hint-placeholder-val="{{ false }}">
+                          <img src="assets/plus-dark.svg" alt="" style="width: 20px; height: 20px;" />
+                        </sc-if>
+                      </span>
+                    </div>
+                    <sc-if value="{{ q.showAnswer }}" hint-placeholder-val="{{ false }}">
+                      <p style="margin: 0; max-width: 430px; font-weight: 400; font-size: 16px; line-height: 1.3; letter-spacing: -0.031em; color: rgb(139,135,119); text-wrap: pretty;">{{ q.answer }}</p>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="position: relative; background: url(assets/hero.png) center / cover no-repeat; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 62px 30px; overflow: hidden;">
+              <div style="width: 154px; height: 33px; flex: none;"></div>
+              <h2 style="margin: 0; align-self: stretch; font-weight: 400; font-size: clamp(38px, 4.3vw, 62px); line-height: 0.9; letter-spacing: -0.0645em; text-align: center; color: rgb(238,235,226);">Why we're making it</h2>
+              <p style="margin: 0; width: min(359px, 80%); font-weight: 400; font-size: clamp(18px, 1.7vw, 24px); line-height: 1.1; letter-spacing: -0.021em; text-align: center; color: rgb(255,254,251); text-wrap: pretty;">It started with watching someone have a hard evening and realising nothing we said helped. Being there did. That's roughly how this works, and it's what we're trying to fit into a phone.</p>
+              <div style="display: flex; flex-direction: row; align-items: center; flex: none;">
+                <a href="https://x.com/AswathiKokkal" target="_blank" rel="noopener noreferrer" style="position: relative; display: flex; --tt-opacity: 0;" style-hover="--tt-opacity: 1;">
+                  <span style="width: 42.844px; height: 42.844px; border-radius: 50%; background: url(assets/team-1.png) center / cover no-repeat;"></span>
+                  <span style="position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); font-size: 14px; letter-spacing: 0em; color: rgb(255,254,251); white-space: nowrap; pointer-events: none; opacity: var(--tt-opacity, 0); transition: opacity 200ms ease;">Connect with Aswathi on X</span>
+                </a>
+                <a href="https://x.com/manum_design" target="_blank" rel="noopener noreferrer" style="position: relative; display: flex; margin-left: -3px; --tt-opacity: 0;" style-hover="--tt-opacity: 1;">
+                  <span style="width: 42.844px; height: 42.844px; border-radius: 50%; background: url(assets/team-3.jpg) center / cover no-repeat;"></span>
+                  <span style="position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); font-size: 14px; letter-spacing: 0em; color: rgb(255,254,251); white-space: nowrap; pointer-events: none; opacity: var(--tt-opacity, 0); transition: opacity 200ms ease;">Connect with Manu on X</span>
+                </a>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px; align-items: center; width: min(514px, 92%); flex: none;">
+                <span style="align-self: stretch; font-weight: 400; font-size: 12px; line-height: 1.3; letter-spacing: -0.042em; color: rgb(255,254,251);">We will reach out to you when holdeasy is ready.</span>
+                <form onSubmit="{{ submit }}" style="display: flex; flex-direction: row; gap: 7px; align-items: center; align-self: stretch;">
+                  <input type="email" value="{{ email }}" onChange="{{ setEmail }}" onFocus="{{ focusOn }}" onBlur="{{ focusOff }}" placeholder="Your email address" style="flex: 1 1 auto; min-width: 0; height: 50px; padding: 8px 16px; border: 1px solid rgba(232,229,221,0.45); border-radius: 28px; background: rgba(255,254,251,0.29); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 8px 15px 0 rgba(0,0,0,0.02); color: rgb(255,254,251); font-size: 18px; line-height: 1; letter-spacing: -0.028em; outline: none; transition: border-color 260ms ease;" style-focus="border-color: rgb(232,229,221);" />
+                  <button type="submit" style="flex: none; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 10px; width: {{ ctaWidth }}; height: 48px; padding: {{ ctaPadding }}; border: 0; border-radius: 100px; background: rgb(255,254,251); color: rgb(12,12,12); font-family: inherit; font-size: 16px; line-height: 1; letter-spacing: -0.031em; white-space: nowrap; cursor: pointer; transition: background 320ms cubic-bezier(.22,1,.36,1), color 320ms cubic-bezier(.22,1,.36,1);" style-hover="background: rgb(12,12,12); color: rgb(255,254,251);">
+                    <span>{{ ctaLabel }}</span>
+                    <sc-if value="{{ ctaShowArrow }}" hint-placeholder-val="{{ true }}">
+                      <svg width="8.068" height="14" viewBox="0 0 8.068 14" fill="none" style="flex: none;"><path d="M 8.04 6.829 C 7.806 7.241 7.567 7.265 7.117 7.264 C 6.278 6.832 5.238 6.099 4.568 5.399 C 3.178 3.95 1.571 2.724 0.068 1.399 C -0.078 1.271 0.054 0.602 0.072 0.416 C 0.119 0.296 0.192 0.17 0.299 0.092 C 0.422 0.003 0.573 -0.013 0.72 0.009 C 2.232 0.234 5.229 3.351 6.394 4.506 C 6.886 4.994 7.439 5.444 7.857 5.997 C 8.082 6.294 8.096 6.473 8.04 6.829 Z" fill="currentColor" fill-rule="nonzero"></path><path d="M 0.84 13.972 C 0.424 13.741 0.298 13.345 0.299 12.899 C 0.735 12.069 1.862 11.064 2.568 10.399 C 4.031 9.023 5.068 7.399 6.691 6.243 C 6.82 6.099 7.126 6.062 7.314 6.08 C 7.436 6.127 7.562 6.199 7.641 6.306 C 7.732 6.427 7.88 6.624 7.857 6.771 C 7.63 8.268 4.351 11.188 3.185 12.342 C 2.692 12.829 2.238 13.378 1.68 13.792 C 1.38 14.015 1.199 14.028 0.84 13.972 Z" fill="currentColor" fill-rule="nonzero"></path></svg>
+                    </sc-if>
+                  </button>
+                </form>
+              </div>
+              <div style="display: flex; flex-direction: row; gap: 38px; align-items: center; flex: none;">
+                <a href="#" style="display: flex; width: 24px; height: 24px; align-items: center; justify-content: center; opacity: 0.9;" style-hover="opacity: 1;"><img src="assets/social-1-cream.svg" alt="" style="width: 18px; height: 18px;" /></a>
+                <a href="#" style="display: flex; width: 24px; height: 24px; align-items: center; justify-content: center; opacity: 0.9;" style-hover="opacity: 1;"><img src="assets/social-2-cream.svg" alt="" style="width: 18px; height: 18px;" /></a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+</div>
+
+<div id="mob" style="background: rgb(238,235,226); overflow-x: hidden;">
+  <section data-screen-label="M01 Hero" style="position: relative; min-height: 713px; background: url(assets/hero.png) center / cover no-repeat; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 62px 0;">
+    <img src="assets/logo-cream.svg" alt="holdeasy.me" style="width: 154px; height: 33px; flex: none;" />
+    <h1 style="margin: 0; align-self: stretch; padding: 0 16px; font-weight: 400; font-size: clamp(36px, 11.4vw, 46px); line-height: 0.9; letter-spacing: -0.087em; text-align: center; color: rgb(238,235,226); text-wrap: balance;">You need the next minute to be simple.</h1>
+    <div style="display: flex; flex-direction: column; gap: 8px; align-items: center; align-self: stretch; padding: 0 20px;">
+      <span style="align-self: stretch; font-weight: 400; font-size: 12px; line-height: 1.3; letter-spacing: -0.042em; color: rgb(255,254,251);">We will reach out to you when holdeasy is ready.</span>
+      <form onSubmit="{{ submit }}" style="display: flex; flex-direction: column; gap: 7px; align-self: stretch;">
+        <input type="email" value="{{ email }}" onChange="{{ setEmail }}" placeholder="Your email address" style="height: 50px; padding: 8px 16px; border: 1px solid rgba(232,229,221,0.45); border-radius: 28px; background: rgba(255,254,251,0.29); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: rgb(255,254,251); font-size: 18px; line-height: 1; letter-spacing: -0.028em; outline: none; transition: border-color 260ms ease;" style-focus="border-color: rgb(232,229,221);" />
+        <button type="submit" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; height: 48px; padding: 12px 12px 12px 20px; border: 0; border-radius: 100px; background: rgb(255,254,251); color: rgb(12,12,12); font-family: inherit; font-size: 16px; line-height: 1; letter-spacing: -0.031em; white-space: nowrap; cursor: pointer; transition: background 320ms cubic-bezier(.22,1,.36,1), color 320ms cubic-bezier(.22,1,.36,1);" style-hover="background: rgb(12,12,12); color: rgb(255,254,251);">
+          <span>{{ ctaLabel }}</span>
+          <svg width="8.068" height="14" viewBox="0 0 8.068 14" fill="none" style="flex: none;"><path d="M 8.04 6.829 C 7.806 7.241 7.567 7.265 7.117 7.264 C 6.278 6.832 5.238 6.099 4.568 5.399 C 3.178 3.95 1.571 2.724 0.068 1.399 C -0.078 1.271 0.054 0.602 0.072 0.416 C 0.119 0.296 0.192 0.17 0.299 0.092 C 0.422 0.003 0.573 -0.013 0.72 0.009 C 2.232 0.234 5.229 3.351 6.394 4.506 C 6.886 4.994 7.439 5.444 7.857 5.997 C 8.082 6.294 8.096 6.473 8.04 6.829 Z" fill="currentColor" fill-rule="nonzero"></path><path d="M 0.84 13.972 C 0.424 13.741 0.298 13.345 0.299 12.899 C 0.735 12.069 1.862 11.064 2.568 10.399 C 4.031 9.023 5.068 7.399 6.691 6.243 C 6.82 6.099 7.126 6.062 7.314 6.08 C 7.436 6.127 7.562 6.199 7.641 6.306 C 7.732 6.427 7.88 6.624 7.857 6.771 C 7.63 8.268 4.351 11.188 3.185 12.342 C 2.692 12.829 2.238 13.378 1.68 13.792 C 1.38 14.015 1.199 14.028 0.84 13.972 Z" fill="currentColor" fill-rule="nonzero"></path></svg>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <section data-screen-label="M02 Intro" style="display: flex; flex-direction: column; gap: 50px; align-items: center; padding: 64px 20px; background: rgb(238,235,226);">
+    <h2 style="margin: 0; max-width: 255px; font-weight: 400; font-size: 24px; line-height: 1.1; letter-spacing: 0em; text-align: center; color: rgb(12,12,12); text-wrap: pretty;">Holdeasy is a small app for the minutes when stress takes over.</h2>
+    <p style="margin: 0; max-width: 285px; font-weight: 400; font-size: 18px; line-height: 1.3; letter-spacing: 0em; text-align: center; color: rgb(139,135,119); text-wrap: pretty;">Sixty seconds that use your senses to bring you back into the room, one prompt at a time. Nothing to type.</p>
+    <div style="width: min(268px, 72vw); aspect-ratio: 268 / 501; background: url(assets/phone.png) 0% 8.372% / 104.851% 103.832% no-repeat;"></div>
+  </section>
+
+  <section data-screen-label="M03 Senses" style="display: flex; flex-direction: column; gap: 50px; align-items: center; padding: 64px 20px; background: rgb(238,235,226);">
+    <h2 style="margin: 0; align-self: stretch; font-weight: 400; font-size: 40px; line-height: 1.1; letter-spacing: -0.025em; text-align: center; color: rgb(12,12,12); text-wrap: pretty;">When stress starts, you shouldn't have to decide anything.</h2>
+    <p style="margin: 0; max-width: 285px; font-weight: 400; font-size: 18px; line-height: 1.3; letter-spacing: 0em; text-align: center; color: rgb(139,135,119); text-wrap: pretty;">It arrives before you can name it, and the last thing you need is one more thing to work out.</p>
+    <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; align-self: stretch; height: 53px;">
+      <img src="assets/sense-1.svg" alt="" style="width: 49.7px; height: 33px;" />
+      <img src="assets/sense-2.svg" alt="" style="width: 33.8px; height: 53px;" />
+      <img src="assets/sense-3.svg" alt="" style="width: 28.4px; height: 51.2px;" />
+      <img src="assets/sense-4.svg" alt="" style="width: 50.7px; height: 41.5px;" />
+      <img src="assets/sense-5.svg" alt="" style="width: 40.2px; height: 45.7px;" />
+    </div>
+  </section>
+
+  <section data-screen-label="M04 Notice" style="min-height: 346px; background: linear-gradient(180deg, rgb(238,235,226) 0%, rgba(238,235,226,0) 19.87%), url(assets/s2-bg.png) 75.986% 100% / 190.333% 166.853% no-repeat; display: flex; flex-direction: column; gap: 64px; align-items: center; padding: 86px 20px 62px 20px;">
+    <div style="display: flex; flex-direction: column; gap: 42px; align-items: center;">
+      <p style="margin: 0; font-weight: 400; font-size: 24px; line-height: 1.1; letter-spacing: -0.021em; text-align: center; color: rgb(255,254,251); text-wrap: pretty;">holdeasy keeps the order. Your only job is to notice.</p>
+      <p style="margin: 0; font-weight: 400; font-size: 24px; line-height: 1.1; letter-spacing: -0.021em; text-align: center; color: rgb(255,254,251); text-wrap: pretty;">Your senses are the way back. They're the part of you still reporting on the room you're actually in.</p>
+    </div>
+  </section>
+
+  <section data-screen-label="M05 What it won't do" style="display: flex; flex-direction: column; gap: 50px; align-items: center; padding: 64px 20px; background: rgb(238,235,226);">
+    <h2 style="margin: 0; align-self: stretch; font-weight: 400; font-size: 40px; line-height: 1.1; letter-spacing: -0.025em; text-align: center; color: rgb(12,12,12);">What it won't do</h2>
+    <p style="margin: 0; max-width: 285px; font-weight: 400; font-size: 18px; line-height: 1.3; letter-spacing: 0em; text-align: center; color: rgb(139,135,119); text-wrap: pretty;">Most of the work went into leaving things out. Something you reach for on a bad night can't ask anything of you.</p>
+  </section>
+
+  <section data-screen-label="M06 No list" style="min-height: 476px; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(assets/s3-bg.png) center / cover no-repeat; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 20px 30px 30px 30px;">
+    <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 12px; justify-content: center; align-items: flex-start; align-self: center;">
+      <sc-for list="{{ noRows }}" as="row" hint-placeholder-count="4">
+        <div style="display: flex; flex-direction: row; align-items: baseline;">
+          <span style="font-weight: 400; font-size: 28px; line-height: 1.1; letter-spacing: -0.012em; color: rgb(255,254,251); opacity: {{ row.noOpacity }}; transition: opacity 500ms ease;">No</span>
+          <span style="margin-left: {{ row.indent }}px; font-weight: 400; font-size: 28px; line-height: 1.1; letter-spacing: -0.012em; color: rgb(255,254,251); opacity: {{ row.opacity }}; transition: opacity 500ms ease;">{{ row.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin: 0; font-weight: 400; font-size: 18px; line-height: 1.3; letter-spacing: -0.028em; text-align: center; color: rgb(255,254,251);">{{ noCaption }}</p>
+  </section>
+
+  <section data-screen-label="M07 Questions" style="display: flex; flex-direction: column; gap: 50px; padding: 64px 20px; background: rgb(238,235,226);">
+    <h2 style="margin: 0; align-self: stretch; font-weight: 400; font-size: 40px; line-height: 1.1; letter-spacing: -0.025em; text-align: center; color: rgb(12,12,12);">Questions we get</h2>
+    <div style="display: flex; flex-direction: column; gap: 32px;">
+      <sc-for list="{{ faq }}" as="q" hint-placeholder-count="3">
+        <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; align-self: stretch;">
+          <div onClick="{{ q.toggle }}" style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; align-self: stretch; gap: 16px; cursor: pointer;">
+            <span style="font-weight: 400; font-size: 20px; line-height: 1.1; letter-spacing: -0.025em; color: rgb(12,12,12);">{{ q.question }}</span>
+            <span style="flex: none; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;">
+              <sc-if value="{{ q.open }}" hint-placeholder-val="{{ true }}">
+                <svg width="20" height="3.554" viewBox="0 0 20 3.554" fill="rgb(12,12,12)"><path d="M 19.906 1.034 C 20.164 1.926 19.872 2.285 19.259 2.893 C 17.52 3.431 14.705 3.092 12.82 3.028 C 8.913 2.895 5.123 3.358 1.236 3.554 C 0.86 3.573 0.387 3.2 0.152 2.916 C 0.049 2.684 -0.027 2.41 0.009 2.155 C 0.051 1.864 0.234 1.638 0.465 1.468 C 2.832 -0.27 11.244 0.004 14.434 0.032 C 15.783 0.044 17.161 -0.081 18.499 0.122 C 19.219 0.231 19.487 0.462 19.906 1.034 Z" fill-rule="nonzero"></path></svg>
+              </sc-if>
+              <sc-if value="{{ q.closed }}" hint-placeholder-val="{{ false }}">
+                <img src="assets/plus-dark.svg" alt="" style="width: 20px; height: 20px;" />
+              </sc-if>
+            </span>
+          </div>
+          <sc-if value="{{ q.showAnswer }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; font-weight: 400; font-size: 16px; line-height: 1.3; letter-spacing: 0em; color: rgb(139,135,119); text-wrap: pretty;">{{ q.answer }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-screen-label="M08 Why" style="background: url(assets/hero.png) center / cover no-repeat; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 44px; padding: 62px 20px;">
+    <img src="assets/logo-cream.svg" alt="holdeasy.me" style="width: 154px; height: 33px; flex: none;" />
+    <h2 style="margin: 0; align-self: stretch; font-weight: 400; font-size: 40px; line-height: 0.9; letter-spacing: -0.025em; text-align: center; color: rgb(238,235,226);">Why we're making it</h2>
+    <p style="margin: 0; max-width: 320px; font-weight: 400; font-size: 20px; line-height: 1.1; letter-spacing: 0em; text-align: center; color: rgb(255,254,251); text-wrap: pretty;">It started with watching someone have a hard evening and realising nothing we said helped. Being there did. That's roughly how this works, and it's what we're trying to fit into a phone.</p>
+    <div style="display: flex; flex-direction: row; align-items: center;">
+      <a href="https://x.com/AswathiKokkal" target="_blank" rel="noopener noreferrer" style="position: relative; display: flex; --tt-opacity: 0;" style-hover="--tt-opacity: 1;">
+        <span style="width: 42.844px; height: 42.844px; border-radius: 50%; background: url(assets/team-1.png) center / cover no-repeat;"></span>
+        <span style="position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); font-size: 14px; letter-spacing: 0em; color: rgb(255,254,251); white-space: nowrap; pointer-events: none; opacity: var(--tt-opacity, 0); transition: opacity 200ms ease;">Connect with Aswathi on X</span>
+      </a>
+      <a href="https://x.com/manum_design" target="_blank" rel="noopener noreferrer" style="position: relative; display: flex; margin-left: -3px; --tt-opacity: 0;" style-hover="--tt-opacity: 1;">
+        <span style="width: 42.844px; height: 42.844px; border-radius: 50%; background: url(assets/team-3.jpg) center / cover no-repeat;"></span>
+        <span style="position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); font-size: 14px; letter-spacing: 0em; color: rgb(255,254,251); white-space: nowrap; pointer-events: none; opacity: var(--tt-opacity, 0); transition: opacity 200ms ease;">Connect with Manu on X</span>
+      </a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px; align-self: stretch;">
+      <span style="font-weight: 400; font-size: 12px; line-height: 1.3; letter-spacing: 0em; color: rgb(255,254,251);">We will reach out to you when holdeasy is ready.</span>
+      <form onSubmit="{{ submit }}" style="display: flex; flex-direction: column; gap: 7px; align-self: stretch;">
+        <input type="email" value="{{ email }}" onChange="{{ setEmail }}" placeholder="Your email address" style="height: 50px; padding: 8px 16px; border: 1px solid rgba(232,229,221,0.45); border-radius: 28px; background: rgba(255,254,251,0.29); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: rgb(255,254,251); font-size: 18px; line-height: 1; letter-spacing: 0em; outline: none; transition: border-color 260ms ease;" style-focus="border-color: rgb(232,229,221);" />
+        <button type="submit" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; height: 48px; padding: 12px 12px 12px 20px; border: 0; border-radius: 100px; background: rgb(255,254,251); color: rgb(12,12,12); font-family: inherit; font-size: 16px; line-height: 1; letter-spacing: 0em; white-space: nowrap; cursor: pointer; transition: background 320ms cubic-bezier(.22,1,.36,1), color 320ms cubic-bezier(.22,1,.36,1);" style-hover="background: rgb(12,12,12); color: rgb(255,254,251);">
+          <span>{{ ctaLabel }}</span>
+          <svg width="8.068" height="14" viewBox="0 0 8.068 14" fill="none" style="flex: none;"><path d="M 8.04 6.829 C 7.806 7.241 7.567 7.265 7.117 7.264 C 6.278 6.832 5.238 6.099 4.568 5.399 C 3.178 3.95 1.571 2.724 0.068 1.399 C -0.078 1.271 0.054 0.602 0.072 0.416 C 0.119 0.296 0.192 0.17 0.299 0.092 C 0.422 0.003 0.573 -0.013 0.72 0.009 C 2.232 0.234 5.229 3.351 6.394 4.506 C 6.886 4.994 7.439 5.444 7.857 5.997 C 8.082 6.294 8.096 6.473 8.04 6.829 Z" fill="currentColor" fill-rule="nonzero"></path><path d="M 0.84 13.972 C 0.424 13.741 0.298 13.345 0.299 12.899 C 0.735 12.069 1.862 11.064 2.568 10.399 C 4.031 9.023 5.068 7.399 6.691 6.243 C 6.82 6.099 7.126 6.062 7.314 6.08 C 7.436 6.127 7.562 6.199 7.641 6.306 C 7.732 6.427 7.88 6.624 7.857 6.771 C 7.63 8.268 4.351 11.188 3.185 12.342 C 2.692 12.829 2.238 13.378 1.68 13.792 C 1.38 14.015 1.199 14.028 0.84 13.972 Z" fill="currentColor" fill-rule="nonzero"></path></svg>
+        </button>
+      </form>
+    </div>
+    <div style="display: flex; flex-direction: row; gap: 38px; align-items: center;">
+      <a href="#" style="display: flex; width: 24px; height: 24px; align-items: center; justify-content: center;"><img src="assets/social-1-cream.svg" alt="" style="width: 18px; height: 18px;" /></a>
+      <a href="#" style="display: flex; width: 24px; height: 24px; align-items: center; justify-content: center;"><img src="assets/social-2-cream.svg" alt="" style="width: 18px; height: 18px;" /></a>
+    </div>
+  </section>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:986}}">
+// Paste the /exec URL from your Apps Script deployment here (see setup notes).
+const WAITLIST_ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+class Component extends DCLogic {
+  state = { email: "", openFaq: 0, noIdx: 1, submitted: false };
+
+  constructor(props) {
+    super(props);
+    this.wrapRef = React.createRef();
+    this.stackRef = React.createRef();
+    this.raf = 0;
+  }
+
+  componentDidMount() {
+    this.onResize = () => { this.layout(); this.tick(); };
+    this.onScroll = () => this.tick();
+    window.addEventListener("resize", this.onResize);
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    this.layout();
+    this.tick();
+    // rAF drives the eased choreography; the interval is a safety net for hosts
+    // that throttle frames or swallow window scroll events
+    const frame = () => { this.tick(); this.raf = requestAnimationFrame(frame); };
+    this.raf = requestAnimationFrame(frame);
+    this.loop = setInterval(() => this.tick(), 100);
+    this.timer = setInterval(() => {
+      this.setState(s => ({ noIdx: (s.noIdx + 1) % 4 }));
+    }, 1440);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.onResize);
+    window.removeEventListener("scroll", this.onScroll);
+    clearInterval(this.timer);
+    clearInterval(this.loop);
+    if (this.raf) cancelAnimationFrame(this.raf);
+    this.raf = 0;
+    if (this.submitTimer) clearTimeout(this.submitTimer);
+    ["--t1", "--vy"].forEach(k => document.documentElement.style.removeProperty(k));
+  }
+
+  desktop() { return window.matchMedia("(min-width: 900px)").matches; }
+
+  // the stacked sections never move: scroll position picks which one is lit
+  // (attribute toggle, not a custom property — React can't clobber it and it interpolates)
+  syncStack() {
+    const stack = this.stackRef.current;
+    if (!stack) return;
+    const secs = stack.querySelectorAll("section[data-reveal]");
+    if (!secs.length) return;
+    let idx = -1;
+    // measured from the moment the stack pins, so a section only dissolves in
+    // once it is already sitting still — never while it slides up into place
+    if (this.desktop()) {
+      const y = -stack.getBoundingClientRect().top;
+      if (y >= 0) idx = Math.min(secs.length - 1, Math.floor(y / window.innerHeight));
+    }
+    const hdr = stack.querySelector("[data-header]");
+    if (hdr) {
+      // drops in once with the first section, then stays for the rest of the stack
+      const show = idx >= 0;
+      if ((hdr.getAttribute("data-in") === "1") !== show) {
+        if (show) hdr.setAttribute("data-in", "1"); else hdr.removeAttribute("data-in");
+      }
+    }
+    secs.forEach((sec, i) => {
+      const on = i === idx;
+      if ((sec.getAttribute("data-in") === "1") === on) return;
+      if (on) sec.setAttribute("data-in", "1"); else sec.removeAttribute("data-in");
+    });
+  }
+
+  layout() {
+    const el = this.wrapRef.current;
+    if (!el) return false;
+    if (!this.desktop()) {
+      el.style.height = "";
+      this.P1 = this.PV = 0;
+      document.documentElement.style.removeProperty("--phone-max-h");
+      return false;
+    }
+    const vh = window.innerHeight;
+    this.P1 = vh * 1.1;
+    this.PV = vh * 1.1;
+    el.style.height = (vh + this.P1 + this.PV) + "px";
+
+    // the intro phone must never overflow its 100vh slide, so cap its height to
+    // whatever vertical room is left after the heading/copy and the section's paddings
+    const introSection = el.querySelector('[data-screen-label="Intro"]');
+    const textBlock = introSection && introSection.firstElementChild;
+    const phone = introSection && introSection.lastElementChild;
+    if (introSection && textBlock && phone) {
+      const style = getComputedStyle(introSection);
+      const padTop = parseFloat(style.paddingTop) || 0;
+      const padBottom = parseFloat(style.paddingBottom) || 0;
+      const phoneMarginTop = parseFloat(getComputedStyle(phone).marginTop) || 0;
+      const available = vh - padTop - padBottom - textBlock.offsetHeight - phoneMarginTop;
+      document.documentElement.style.setProperty("--phone-max-h", Math.max(0, available) + "px");
+    }
+    return true;
+  }
+
+  tick() {
+    this.syncStack();
+    const el = this.wrapRef.current;
+    const r = document.documentElement.style;
+    if (!el || !this.desktop()) {
+      ["--t1", "--vy"].forEach(k => r.removeProperty(k));
+      return;
+    }
+    // the template streams in after mount, so the first layout() can miss the
+    // ref entirely — measure lazily until the ranges are real
+    if (!Number.isFinite(this.P1) || this.P1 <= 0) { if (!this.layout()) return; }
+    const y = Math.max(0, -el.getBoundingClientRect().top);
+    const cl = (v, a, b) => b <= a ? (v >= b ? 1 : 0) : Math.min(1, Math.max(0, (v - a) / (b - a)));
+    const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    // A: hero pane exits left while the right pane fills the viewport
+    const tT1 = ease(cl(y, 0, this.P1));
+    // B: the now full-width intro panel scrolls up and out
+    const tVy = 100 * cl(y, this.P1, this.P1 + this.PV);
+
+    // ease toward the targets so the choreography glides instead of snapping
+    if (!Number.isFinite(this.cT1) || !Number.isFinite(this.cVy)) { this.cT1 = tT1; this.cVy = tVy; }
+    this.cT1 += (tT1 - this.cT1) * 0.14;
+    this.cVy += (tVy - this.cVy) * 0.14;
+    if (Math.abs(tT1 - this.cT1) < 0.0006) this.cT1 = tT1;
+    if (Math.abs(tVy - this.cVy) < 0.06) this.cVy = tVy;
+    r.setProperty("--t1", this.cT1.toFixed(4));
+    r.setProperty("--vy", this.cVy.toFixed(2));
+  }
+
+  renderVals() {
+    const labels = ["typing", "streak to keep", "daily reminders", "long reads"];
+    const captions = [
+      "Every screen is a tap.",
+      "Three weeks away isn't a failure.",
+      "It stays quiet until you open it.",
+      "No courses, no library. One minute, then you're out."
+    ];
+    const idx = this.state.noIdx;
+    const rowH = 46 + 16;
+    const answers = [
+      "The hard part isn't knowing what to do. It's keeping track while you do it, at exactly the moment that's difficult. The app holds the sequence so you only have to notice.",
+      "It's best at pulling attention out of a spiral. It isn't treatment, and it won't do much for something already at full height. We'd rather say that plainly.",
+      "Sessions stay on your phone. They're only useful to you, so there's no reason for them to live anywhere else."
+    ];
+    const questions = [
+      "Why do I need an app for this?",
+      "Does it help when it's really bad?",
+      "What happens to what I record?"
+    ];
+    return {
+      wrapRef: this.wrapRef,
+      stackRef: this.stackRef,
+      email: this.state.email,
+      ctaLabel: this.state.submitted ? "You're on the list!" : "Join waitlist",
+      ctaShowArrow: !this.state.submitted,
+      ctaWidth: this.state.submitted ? "auto" : "145px",
+      ctaPadding: this.state.submitted ? "12px 20px" : "12px 12px 12px 20px",
+      setEmail: e => {
+        const value = e.target.value;
+        // editing the email after a submission un-does the confirmed look immediately,
+        // rather than waiting for the 3s auto-revert below
+        if (this.submitTimer) { clearTimeout(this.submitTimer); this.submitTimer = null; }
+        this.setState(s => s.submitted ? { email: value, submitted: false } : { email: value });
+      },
+      submit: e => {
+        e.preventDefault();
+        const email = this.state.email.trim();
+        if (!email) return;
+        if (WAITLIST_ENDPOINT.startsWith("PASTE_")) {
+          console.warn("Holdeasy waitlist: set WAITLIST_ENDPOINT to your Apps Script /exec URL before going live.");
+        } else {
+          // no-cors: Apps Script doesn't answer CORS preflights, so we fire the
+          // write and don't rely on reading the (opaque) response back.
+          fetch(WAITLIST_ENDPOINT, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify({ email })
+          }).catch(() => {});
+        }
+        if (this.submitTimer) clearTimeout(this.submitTimer);
+        this.setState({ submitted: true });
+        this.submitTimer = setTimeout(() => {
+          this.submitTimer = null;
+          this.setState({ submitted: false });
+        }, 3000);
+      },
+      noShift: -(idx - 1) * rowH,
+      noCaption: captions[idx],
+      noRows: labels.map((label, i) => ({
+        label,
+        indent: 18,
+        opacity: i === idx ? 1 : 0.45,
+        noOpacity: i === idx ? 1 : 0
+      })),
+      faq: questions.map((question, i) => ({
+        question,
+        answer: answers[i],
+        open: this.state.openFaq === i,
+        closed: this.state.openFaq !== i,
+        showAnswer: this.state.openFaq === i && answers[i].length > 0,
+        toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i }))
+      }))
+    };
+  }
+}
+
+</script>
+</body>
+</html>
